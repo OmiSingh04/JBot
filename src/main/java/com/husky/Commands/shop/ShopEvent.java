@@ -1,22 +1,13 @@
 package com.husky.Commands.shop;
 
-import main.Bot;
-
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class ShopEvent extends ListenerAdapter {
-
-    @Override
-    public void onGuildMessageReceived(GuildMessageReceivedEvent e){
-        if(e.getMessage().getContentRaw().equalsIgnoreCase(Bot.SERVER_PREFIX+"shop")){
-            EmbedBuilder embed = new EmbedBuilder();
-            embed.setTitle("Shop");
-            embed.addField("Food", "5 treats", false);
-            embed.addField("Boosts", "100 treats",false);
-            e.getChannel().sendMessage(embed.build()).queue();
-        }
+public class ShopEvent{
+    public EmbedBuilder createMenu(){
+        EmbedBuilder embed = new EmbedBuilder();
+        embed.setTitle("Shop")
+                .addField("Foods", "5 treats", false)
+                .addField("Boosts", "100 treats", false);
+        return embed;
     }
 }
