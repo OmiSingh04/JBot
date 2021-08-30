@@ -1,4 +1,4 @@
 package com.husky.games;
 
-public class Games {
+public class GamesEvent {
 }
