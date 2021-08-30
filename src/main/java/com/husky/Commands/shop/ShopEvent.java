@@ -1,4 +1,4 @@
-package com.husky.Commands;
+package com.husky.Commands.shop;
 
 import main.Bot;
 
