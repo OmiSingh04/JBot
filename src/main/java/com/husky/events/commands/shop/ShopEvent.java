@@ -1,4 +1,4 @@
-package com.husky.command.shop;
+package com.husky.events.commands.shop;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 

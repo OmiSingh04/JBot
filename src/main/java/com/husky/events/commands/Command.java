@@ -1,6 +1,7 @@
-package com.husky.command;
+package com.husky.events.commands;
 
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
 

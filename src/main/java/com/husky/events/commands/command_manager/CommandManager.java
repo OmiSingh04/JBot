@@ -1,8 +1,9 @@
-package com.husky.command_manager;
+package com.husky.events.commands.command_manager;
 
 
-import com.husky.command.Command;
+import com.husky.events.commands.Command;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,16 +12,22 @@ public class CommandManager {
     public static String PREFIX = "?";
     public HashMap<String, Command> commands;
     public HashMap<List<String>, String> aliasMain;
-    private List<Command> commandList;
+    public List<Command> commandList;
+    public List<ButtonCommand> buttonCommandList;
 
     public CommandManager(List<Command> commandList){
         this.commandList = commandList;
+        this.buttonCommandList = new ArrayList<ButtonCommand>();
         aliasMain = new HashMap<>();
         commands = new HashMap<>();
         for(Command command : commandList){
             aliasMain.put(command.getAliases(), command.getMain());
             commands.put(command.getMain(), command);
         }
+        for(Command command :  commandList)
+            if(command instanceof ButtonCommand) {
+                buttonCommandList.add((ButtonCommand) command);
+            }
     }
 
 

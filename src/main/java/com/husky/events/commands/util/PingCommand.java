@@ -1,7 +1,8 @@
-package com.husky.command.util;
+package com.husky.events.commands.util;
 
-import com.husky.command.Command;
+import com.husky.events.commands.Command;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class PingCommand extends Command {
 
@@ -17,4 +18,5 @@ public class PingCommand extends Command {
             });
 
     }
+
 }

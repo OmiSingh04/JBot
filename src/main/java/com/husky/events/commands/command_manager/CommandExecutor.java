@@ -1,20 +1,17 @@
-package com.husky.command_manager;
+package com.husky.events.commands.command_manager;
 
-import com.husky.command.Command;
-import com.husky.command.util.PingCommand;
+import com.husky.events.commands.Command;
+import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CommandExecutor extends ListenerAdapter {
 
     private CommandManager commandManger;
 
-    public CommandExecutor(){
-        List<Command> commands= new ArrayList<>();
-        commands.add(new PingCommand());
+    public CommandExecutor(List<Command> commands){
         commandManger = new CommandManager(commands);
     }
 
@@ -33,5 +30,11 @@ public class CommandExecutor extends ListenerAdapter {
             commandManger.getCommand(mainCommand).executeCommand(event.getMessage());
         }
 
+    }
+
+    @Override
+    public void onButtonClick(ButtonClickEvent event){
+        for(ButtonCommand command: commandManger.buttonCommandList)
+            command.executeButton(event);
     }
 }
