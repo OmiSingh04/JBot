@@ -1,5 +1,6 @@
 package com.husky.events.commands.command_manager;
 
+import com.husky.events.commands.ButtonCommand;
 import com.husky.events.commands.Command;
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;

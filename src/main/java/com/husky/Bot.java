@@ -1,6 +1,7 @@
 package com.husky;
 
 import com.husky.events.commands.Command;
+import com.husky.events.commands.shop.ShopCommand;
 import com.husky.events.commands.util.HelloCommand;
 import com.husky.events.commands.util.PingCommand;
 import com.husky.events.commands.command_manager.CommandExecutor;
@@ -19,6 +20,7 @@ public class Bot extends ListenerAdapter {
         List<Command> commands = new ArrayList<>();
         commands.add(new PingCommand());
         commands.add(new HelloCommand());
+        commands.add(new ShopCommand());
         Bot.jda = JDABuilder.createDefault(args[0])
                 .addEventListeners(new CommandExecutor(commands)).build();
     }

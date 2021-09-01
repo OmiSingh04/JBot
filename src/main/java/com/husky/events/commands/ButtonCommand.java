@@ -1,4 +1,4 @@
-package com.husky.events.commands.command_manager;
+package com.husky.events.commands;
 
 import com.husky.events.commands.Command;
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;

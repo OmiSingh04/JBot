@@ -1,6 +1,7 @@
 package com.husky.events.commands.command_manager;
 
 
+import com.husky.events.commands.ButtonCommand;
 import com.husky.events.commands.Command;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class CommandManager {
 
     public CommandManager(List<Command> commandList){
         this.commandList = commandList;
-        this.buttonCommandList = new ArrayList<ButtonCommand>();
+        this.buttonCommandList = new ArrayList<>();
         aliasMain = new HashMap<>();
         commands = new HashMap<>();
         for(Command command : commandList){
