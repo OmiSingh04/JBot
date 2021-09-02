@@ -14,7 +14,7 @@ public class ItemIdGenerator {
     public static int IdGenerator(String itemName){
         int id=0;
         for(int i = 0; i<itemName.length(); i++){
-            id=+(int)itemName.charAt(i);
+            id=id+(int)itemName.charAt(i);
         }
         return id;
     }
@@ -23,8 +23,8 @@ public class ItemIdGenerator {
         {
             Object jobs = new JSONParser().parse(fr);
             JSONArray items = (JSONArray) jobs;
-            for(int i =0; i<items.size();i++){
-                JSONObject item = (JSONObject)items.get(i);
+            for (Object o : items) {
+                JSONObject item = (JSONObject) o;
                 item.put("item_id", IdGenerator(item.get("name").toString()));
             }
             FileWriter file = new FileWriter(path);
