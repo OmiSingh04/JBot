@@ -1,11 +1,17 @@
 package com.husky.events.commands.shop;
 
 import com.husky.events.commands.ButtonCommand;
+import com.husky.events.commands.shop.ItemIdGenerator;
+
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.interactions.components.Button;
 import net.dv8tion.jda.api.interactions.components.ButtonStyle;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShopCommand extends ButtonCommand {
     public ShopCommand() {
@@ -14,15 +20,20 @@ public class ShopCommand extends ButtonCommand {
 
     @Override
     public void executeCommand(Message message){
-        EmbedBuilder embed = new EmbedBuilder()
-                .setTitle("Shop")
-                .addField("Food", "5 Treats", false)
-                .addField("Boosts", "100 Treats", false);
+        EmbedBuilder embed = new EmbedBuilder().setTitle("Shop");
+        ItemIdGenerator.setId();
+        List<String> items = ItemIdGenerator.getName();
+        List<String> itemPrice = ItemIdGenerator.getPrice();
+        
+        List<Button> button = new ArrayList<>();
+        for(int i = 0; i<items.size(); i++){
+            embed.addField(items.get(i), itemPrice.get(i)+" Treats", false);
+            button.add(i, Button.of(ButtonStyle.PRIMARY, items.get(i), itemPrice.get(i)+" Treats"));
+        }
 
         message.replyEmbeds(embed.build())
                 .setActionRow(
-                    Button.of(ButtonStyle.PRIMARY, "Food", "5 Treats"),
-                    Button.of(ButtonStyle.PRIMARY, "Boost", "100 Treats")
+                    button
                 )
                 .queue();
     }
