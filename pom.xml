@@ -54,7 +54,7 @@
           <configuration>
             <archive>
               <manifest>
-                <mainClass>com.com.husky.Bot</mainClass>
+                <mainClass>com.husky.Bot</mainClass>
               </manifest>
             </archive>
             <descriptorRefs>
