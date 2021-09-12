@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="PetBot" />
+        <module name="fierce-island-52495" />
       </profile>
     </annotationProcessing>
   </component>
