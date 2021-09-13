@@ -12,3 +12,6 @@ brrrrrrrrrrrr param papparappparaaaa
 
 
 Will continue soon... exams man :pensive:
+Tried a very different approach owo. Im still thinking if there really is any kind of gain here. <br>
+The idea was to make just a single listener, and according to the command, execute that particular commmand function. <br>
+So the bot only registers one Listener, whilst being able to listen to all commands, so i think we save memory?? :thinking:
