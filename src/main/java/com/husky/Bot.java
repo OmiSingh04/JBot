@@ -8,6 +8,7 @@ import com.husky.events.commands.util.PingCommand;
 import com.husky.events.commands.util.ProgressCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.security.auth.login.LoginException;
@@ -23,6 +24,7 @@ public class Bot extends ListenerAdapter {
         commands.add(new ShopCommand());
         commands.add(new ProgressCommand());
         Bot.jda = JDABuilder.createDefault(System.getenv("TOKEN"))
+                .setActivity(Activity.listening(";hello"))
                 .addEventListeners(new CommandExecutor(commands)).build();
     }
 }
