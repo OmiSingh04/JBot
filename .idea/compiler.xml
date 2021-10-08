@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="PetBot" />
         <module name="fierce-island-52495" />
+        <module name="DBot" />
         <module name="JPetBot" />
       </profile>
     </annotationProcessing>

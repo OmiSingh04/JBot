@@ -53,7 +53,7 @@ public class Pet implements Runnable{
             tick();
 
             try {
-                Thread.sleep(5000);//sleep for a minute bruh
+                Thread.sleep(120000);//sleep for a minute bruh
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

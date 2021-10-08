@@ -3,6 +3,7 @@ package com.husky;
 import com.husky.events.commands.Command;
 import com.husky.events.commands.command_manager.CommandExecutor;
 import com.husky.events.commands.shop.ShopCommand;
+import com.husky.events.commands.util.AvatarCommand;
 import com.husky.events.commands.util.HelloCommand;
 import com.husky.events.commands.util.PingCommand;
 import com.husky.events.commands.util.ProgressCommand;
@@ -23,8 +24,9 @@ public class Bot extends ListenerAdapter {
         commands.add(new HelloCommand());
         commands.add(new ShopCommand());
         commands.add(new ProgressCommand());
+        commands.add(new AvatarCommand());
         Bot.jda = JDABuilder.createDefault(System.getenv("TOKEN"))
-                .setActivity(Activity.listening(";hello"))
+                .setActivity(Activity.listening("?hello"))
                 .addEventListeners(new CommandExecutor(commands)).build();
     }
 }
