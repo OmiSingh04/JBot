@@ -1,6 +1,7 @@
 package com.husky;
 
 import com.husky.events.commands.Command;
+import com.husky.events.commands.SlashCommand;
 import com.husky.events.commands.command_manager.CommandExecutor;
 import com.husky.events.commands.shop.ShopCommand;
 import com.husky.events.commands.util.HelloCommand;
@@ -22,7 +23,13 @@ public class Bot extends ListenerAdapter {
         commands.add(new HelloCommand());
         commands.add(new ShopCommand());
         commands.add(new ProgressCommand());
-        Bot.jda = JDABuilder.createDefault(System.getenv("TOKEN"))
+        Bot.jda = JDABuilder.createDefault(args[0])
                 .addEventListeners(new CommandExecutor(commands)).build();
+
+        for(Command cmd : commands){
+            if(cmd instanceof SlashCommand){
+                Bot.jda.upsertCommand(cmd.getMain(), ".com");
+            }
+        }
     }
 }

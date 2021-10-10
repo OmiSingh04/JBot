@@ -1,13 +1,13 @@
 package com.husky.events.commands.util;
 
-import com.husky.events.commands.ButtonCommand;
+import com.husky.events.commands.SlashCommand;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
+import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.components.Button;
 import net.dv8tion.jda.api.interactions.components.ButtonStyle;
 
-public class HelloCommand extends ButtonCommand {//something which provides both
+public class HelloCommand extends SlashCommand {//something which provides both
 
     public HelloCommand() {
         super("hello", new String[]{"hi", "hello"});
@@ -24,12 +24,8 @@ public class HelloCommand extends ButtonCommand {//something which provides both
     }
 
     @Override
-    public void executeButton(ButtonClickEvent event) {
-        if (event.getComponentId().equals("hi")) {
-            event.replyEmbeds(new EmbedBuilder()
-                    .addField("Hello", "nice to meet you "+event.getUser().getName(), true)
-                    .setFooter(event.getUser().getName(), event.getUser().getAvatarUrl())
-                    .build()).queue();
-        }
+    public void executeSlash(SlashCommandEvent event){
+        if(event.getCommandString().substring(1).equalsIgnoreCase("hello"))
+            event.reply("Hello"+" "+event.getUser().getName()).queue();
     }
 }
