@@ -1,6 +1,3 @@
-*pass*
-/target/
-/bin/
 *.log
 Constant.java
 Constant.class
