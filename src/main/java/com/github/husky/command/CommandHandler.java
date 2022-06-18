@@ -9,7 +9,7 @@ import com.github.husky.Constant;
 public class CommandHandler extends ListenerAdapter{
     @Override
     public void onMessageReceived(MessageReceivedEvent event){
-        if(event.getMessage().getContentRaw().substring(0,1).equals(Constant.PREFIX)){
+        if(event.getMessage().getContentDisplay().startsWith(Constant.PREFIX)){
             CommandExecutor.execute(getCommandName(event.getMessage().getContentRaw()), event);
         }
     }

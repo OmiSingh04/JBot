@@ -1,13 +1,39 @@
 package com.github.husky.command.ping;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class Ping {
-    public static void getPing(MessageChannel channel){
+    public static void getPing(MessageChannel channel, EmbedBuilder embed, MessageReceivedEvent event){
         long time = System.currentTimeMillis();
-        channel.sendMessage("Pong!")
+        channel.sendMessageEmbeds(embed.setTitle("Ping").addField("Pong!"," ", false).build())
         .queue(response -> {
-        	response.editMessageFormat("Pong!, %d ms", System.currentTimeMillis()-time).queue();
+        	response.editMessageEmbeds(
+        			new EmbedBuilder()
+        			.setTitle("Ping")
+        			.addField("Pong! "," "+(System.currentTimeMillis()-time),true)
+        			.setFooter("Requested by "+event.getAuthor().getAsTag(), event.getAuthor().getAvatarUrl())
+        			.build()
+        			).queue();
+        
+//        	"Pong!, %d ms", System.currentTimeMillis()-time
+        });
+    }
+    public static void getPing(MessageChannel channel, EmbedBuilder embed, SlashCommandInteractionEvent  event){
+        long time = System.currentTimeMillis();
+        channel.sendMessageEmbeds(embed.setTitle("Ping").addField("Pong!"," ", false).build())
+        .queue(response -> {
+        	response.editMessageEmbeds(
+        			new EmbedBuilder()
+        			.setTitle("Ping")
+        			.addField("Pong! "," "+(System.currentTimeMillis()-time), false)
+        			.setFooter("Requested by "+event.getUser().getAsTag(), event.getUser().getAvatarUrl())
+        			.build()
+        			).queue();
+        
+//        	"Pong!, %d ms", System.currentTimeMillis()-time
         });
     }
 }
