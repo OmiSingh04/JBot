@@ -13,6 +13,10 @@ public class DataClass {
     	this.uid = uid;
     }
     
+    public DataClass() {
+    	
+    }
+    
     public long getUID() {
     	return uid;
     }

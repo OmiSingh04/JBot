@@ -21,7 +21,10 @@ public class CommandExecutor{
                          break;
             case "register": Users.registerUser(msg.getAuthor().getIdLong(), channel);
                              break;
-            default: channel.sendMessage("No such command exist");
+                             
+            case "money": Users.getUserData(msg.getAuthor().getIdLong(), channel);
+            				break;
+            default: channel.sendMessage("No such command exist").queue();
         }
     
     }
@@ -33,7 +36,7 @@ public class CommandExecutor{
             case "hello": Hello.sendHello(channel);
                          break;
             case "feed" : break;
-            default: channel.sendMessage("No such command exist");
+            default: channel.sendMessage("No such command exist").queue();
         }
     
     }

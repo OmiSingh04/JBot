@@ -3,17 +3,19 @@ package com.github.husky.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
 import org.postgresql.util.PSQLException;
 
 import com.github.husky.Constant;
+import com.github.husky.command.user.Users;
 
 public class DatabaseHandler {
-    public static Connection makeConnection(){
+	public static Connection connection = null;
+    public static void makeConnection(){
         Properties prop = new Properties();
-        Connection connection = null;
         try{
             Class.forName("org.postgresql.Driver");
             prop.setProperty("port", "5432");
@@ -26,9 +28,8 @@ public class DatabaseHandler {
             System.err.println(e.getClass().getName()+" : "+e.getMessage());
             System.exit(0);
         }
-        return connection;
     }
-    public static String insertData(Connection connection, DataClass data){
+    public static String insertData(DataClass data){
         PreparedStatement statement;
         try{
             String sql = "INSERT INTO money(uid, money) "+"VALUES(?,?)";
@@ -50,7 +51,7 @@ public class DatabaseHandler {
         }
         return "Registered!";
     }
-    public static void alterData(Connection connection, DataClass data){
+    public static void alterData(DataClass data){
         PreparedStatement statement;
         try{
             String sql = "UPDATE money SET money=? WHERE uid=? ;";
@@ -63,5 +64,53 @@ public class DatabaseHandler {
         }catch(SQLException e){
             e.printStackTrace();
         }
+    }
+    public static DataClass getUser(DataClass data) {
+    	DataClass result = new DataClass();
+    	PreparedStatement statement;
+    	if(checkUser(data)) {
+	    	try {
+	    		String sql = "SELECT * FROM money;";
+	    		statement = connection.prepareStatement(sql);
+	    		ResultSet rset = statement.executeQuery();
+	            while(rset.next()) {
+	            	long fetchUID = rset.getLong("uid");
+	            	if(fetchUID == data.getUID()) {
+	            		int money = rset.getInt("money");
+	            		result.setMoney(money);
+	            		break;
+	            	}
+	            }
+	    		rset.close();
+	    		statement.close();
+	    	}catch(SQLException e) {
+	    		e.printStackTrace();
+	    	}
+    	}else {
+    		Users.registerUser(data.getUID());
+    	}
+    	
+    	return result;
+    }
+    
+    public static boolean checkUser(DataClass data) {
+    	PreparedStatement statement;
+    	boolean check=false;
+    	try {
+    		String sql = "SELECT * FROM money;";
+    		statement = connection.prepareStatement(sql);
+    		ResultSet rset = statement.executeQuery();
+    		while(rset.next()) {
+    			long fetchUID = rset.getLong("uid");
+    			if(fetchUID == data.getUID()) {
+    				check=true;
+    				break;
+    			}
+    		}
+    	
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+    	}
+    	return check;
     }
 }

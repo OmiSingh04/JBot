@@ -1,3 +1,4 @@
 *.log
 Constant.java
 Constant.class
+/target/

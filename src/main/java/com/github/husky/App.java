@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 import com.github.husky.command.CommandHandler;
+import com.github.husky.database.DatabaseHandler;
 
 /**
  * Hello world!
@@ -18,6 +19,7 @@ public class App{
                                         .addEventListeners(new CommandHandler())
                                         .setActivity(Activity.playing("hello world!"))
                                         .build();
+        DatabaseHandler.makeConnection();
         jda.upsertCommand("ping", "send Pong");
         jda.upsertCommand("hello", "Hello there!");
     }
