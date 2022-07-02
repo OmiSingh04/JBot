@@ -10,7 +10,12 @@ public class CommandHandler extends ListenerAdapter{
     @Override
     public void onMessageReceived(MessageReceivedEvent event){
         if(event.getMessage().getContentDisplay().startsWith(Constant.PREFIX)){
-            CommandExecutor.execute(getCommandName(event.getMessage().getContentRaw()), event);
+            if(event.getMessage().getContentRaw().contains(" "))
+            {
+                CommandExecutor.execute(getCommandName(event.getMessage().getContentRaw().substring(0, event.getMessage().getContentRaw().indexOf(" "))), event);
+            }else{
+                CommandExecutor.execute(getCommandName(event.getMessage().getContentRaw()), event);
+            }
         }
     }
 

@@ -5,6 +5,8 @@ import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
+import java.awt.Color;
+
 public class Ping {
     public static void getPing(MessageChannel channel, EmbedBuilder embed, MessageReceivedEvent event){
         long time = System.currentTimeMillis();
@@ -15,6 +17,7 @@ public class Ping {
         			.setTitle("Ping")
         			.addField("Pong! "," "+(System.currentTimeMillis()-time),true)
         			.setFooter("Requested by "+event.getAuthor().getAsTag(), event.getAuthor().getAvatarUrl())
+					.setColor(Color.lightGray)
         			.build()
         			).queue();
         

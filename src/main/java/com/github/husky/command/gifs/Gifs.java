@@ -1,5 +1,9 @@
 package com.github.husky.command.gifs;
 
-public class Gifs {
-    
+import net.dv8tion.jda.api.entities.MessageChannel;
+
+public class Gifs{
+    public static void sendGifs(String value, MessageChannel channel){
+        
+    }
 }

@@ -4,9 +4,9 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
 public class Hello {
-    public static void sendHello(MessageChannel channel, EmbedBuilder embed){
+    public static void sendHello(MessageChannel channel, EmbedBuilder embed, String username){
         channel.sendMessageEmbeds(
-        		embed.setTitle("Hello world!").build())
+        		embed.setTitle("Hello "+username+"!").build())
         .queue();
     }
 }
